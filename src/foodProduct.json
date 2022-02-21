@@ -1,0 +1,32 @@
+[
+	{
+	"foodName": "Kebab Beef",
+	"xpathFoodName": "Kebab Beef",
+	"foodAmount": "1",
+	"notes": "Kebab Beef"
+	},
+	{
+	"foodName": "Cheese Burger",
+	"xpathFoodName": "Cheese Burger",
+	"foodAmount": "2",
+	"notes": "Cheese Burger"
+	},
+	{
+	"foodName": "Beef Spicy Burger",
+	"xpathFoodName": "Beef spicy burger",
+	"foodAmount": "3",
+	"notes": "Beef Spicy Burger"
+	},
+	{
+	"foodName": "Big Size Burger",
+	"xpathFoodName": "Big Size Burger",
+	"foodAmount": "1",
+	"notes": "Big Size Burger"
+	},
+	{
+	"foodName": "Greentea Cake",
+	"xpathFoodName": "Greentea Cake",
+	"foodAmount": "1",
+	"notes": "Greentea Cake"
+	}
+]

@@ -44,12 +44,13 @@ public class testCase extends BaseTest {
 	    paymentPage.pageLoaded();
 //	    String choice = homePage.loadPaymentMethod();
 	    String choice = paymentData.getPayment();
+	    paymentPage.assertTotalPrice(products, cartPage);
 	    paymentPage.paymentChoice(choice,phone);
 	    paymentPage.paymentPageLoaded();
 	    paymentPage.phoneInputed()
-	    		    .continuePayment()
+	    		   .continuePayment()
 	    	       .clickOrderDetail();
-	    
+	   
 	    OrderDetailPage orderDetailPage = new OrderDetailPage(getDriver());
 	    orderDetailPage.pageLoaded();
 	    

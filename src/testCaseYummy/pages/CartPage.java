@@ -21,7 +21,7 @@ public class CartPage extends BasePage{
 			
 	private By deliveryBtn = By.xpath("//div[contains(text(),'Delivery')]");
 	private By pickupBtn = By.xpath("//div[contains(text(),'Pickup')]");
-								            //css-901oao r-1l7q1w7 r-fppytw r-1b43r93 r-uiaua r-rjixqe r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-5ywpl4 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y
+								           
 	private String amountPath= "//div[@class='css-901oao r-1l7q1w7 r-fppytw r-1b43r93 r-uiaua r-rjixqe r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-5ywpl4 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']";
 	private String amountInWeb;
 	
@@ -37,12 +37,14 @@ public class CartPage extends BasePage{
 	private double totalPrice;
 	private double pricePerItemInWeb;
 	private double itemPrice;
+	
+	
 	@Step
 	public Boolean pageLoaded() {
 		return waitLong.until(ExpectedConditions.urlContains("/checkout"));
 	}
 	
-	
+	@Step
 	public String getProductName(String loadedName) {
 		
 		name = firstPath + loadedName + lastPath;	
@@ -59,13 +61,13 @@ public class CartPage extends BasePage{
 		}
 	}
 	
-	
 
+	@Step
 	public String getProductAmount(int loadedAmount) {
 		
 		amountInWeb = "(" + amountPath + ")[" + Integer.toString(loadedAmount) + "]" ;
-		By productNames = By.xpath(amountInWeb);
-		return waitLong.until(ExpectedConditions.visibilityOfElementLocated(productNames)).getText();
+		By productAmount = By.xpath(amountInWeb);
+		return waitLong.until(ExpectedConditions.visibilityOfElementLocated(productAmount)).getText();
 
 	}
 	
@@ -76,8 +78,8 @@ public class CartPage extends BasePage{
 		}
 	}
 	
-	
-	
+
+	@Step
 	public String getProductPrice(int loadedAmount) {
 		
 		priceInWeb = "(" + pricePath + ")[" + Integer.toString(loadedAmount) + "]" ;
@@ -106,12 +108,11 @@ public class CartPage extends BasePage{
 			}
 			
 			itemPrice = products[i].getFoodPrice();
-			
-			System.out.println("price per item in web " + pricePerItemInWeb);
-			System.out.println(products[i].getFoodPrice());
 			AssertJUnit.assertEquals(pricePerItemInWeb,itemPrice);
 		}
 	}
+	
+	
 	
 	public CartPage selectDeliveryChoice (String choice) {
 		if(choice.equalsIgnoreCase("Delivery")) {
@@ -121,6 +122,8 @@ public class CartPage extends BasePage{
 		}
 		return this;
 	}
+	
+	@Step
 	public CartPage insertEmailAndRoomDetail(String email, String roomDetail, String choice) {
 		
 		driver.findElement(emailFld).sendKeys(email);

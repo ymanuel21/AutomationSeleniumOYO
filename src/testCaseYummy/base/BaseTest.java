@@ -21,7 +21,6 @@ public class BaseTest {
 		this.driver.set(driver);
 		}
 	
-	@Step
 	public WebDriver getDriver() {
 		return this.driver.get();
 	}

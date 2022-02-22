@@ -21,31 +21,34 @@ public class testCase extends BaseTest {
 	public void testCaseAddToCartAllitemParralel(Payment paymentData) throws IOException, InterruptedException {
 		Products[] products = JacksonUtils.deserializeJson("foodProduct.json", Products[].class);
 	    HomePage homePage = new HomePage(getDriver()).load();
-	    homePage.addMultipleItem(products, homePage);
 	    
-	    homePage.clickViewCartLink();
-	    String nama = homePage.loadUsername();
-	    String phone = homePage.loadUserphone();
-	    homePage.inputUsernameAndPhone(nama, phone);
+	    String nama 			= homePage.loadUsername();
+	    String phone			= homePage.loadUserphone();
+	    String deliveryChoice 	= paymentData.getDeliveryChoice();
+	    String email 			= homePage.loadEmail();
+	    String room 			= homePage.loadRoomDetail();
+//	    String choice 			= homePage.loadPaymentMethod();
+	    String choice 			= paymentData.getPayment();
+	    
+	    homePage.addMultipleItem(products, homePage)
+	    		.clickViewCartLink()
+	    		.inputUsernameAndPhone(nama, phone);
 	    
 	    CartPage cartPage = new CartPage(getDriver());
 	    cartPage.pageLoaded();
-	    cartPage.assertMultipleItem(products, cartPage);
-	    cartPage.assertMultipleItemAmount(products, cartPage);
-	    cartPage.assertMultipleItemPrice(products, cartPage);
 	    
-	    String deliveryChoice = paymentData.getDeliveryChoice();
-	    String email = homePage.loadEmail();
-	    String room = homePage.loadRoomDetail();
+	    cartPage.assertMultipleItem(products, cartPage)
+	    		.assertMultipleItemAmount(products, cartPage)
+	    		.assertMultipleItemPrice(products, cartPage);
+	    
+
 	    cartPage.selectDeliveryChoice(deliveryChoice)
 	    		.insertEmailAndRoomDetail(email, room, deliveryChoice);
 	    
 	    PaymentPage paymentPage = new PaymentPage(getDriver());
 	    paymentPage.pageLoaded();
-//	    String choice = homePage.loadPaymentMethod();
-	    String choice = paymentData.getPayment();
-	    paymentPage.assertTotalPrice(products, cartPage);
-	    paymentPage.paymentChoice(choice,phone);
+	    paymentPage.assertTotalPrice(products, cartPage)
+	    		   .paymentChoice(choice,phone);
 	    paymentPage.paymentPageLoaded();
 	    paymentPage.phoneInputed()
 	    		   .continuePayment()

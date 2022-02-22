@@ -42,7 +42,7 @@ public class PaymentPage extends BasePage {
 	}
 	
 	@Step
-	public void paymentChoice(String PaymentChoice, String Phone) {
+	public PaymentPage paymentChoice(String PaymentChoice, String Phone) {
 		if(PaymentChoice.equalsIgnoreCase("OVO")) {
 			driver.findElement(paymentOVO).click();
 			driver.findElement(chooseMethod).click();
@@ -50,7 +50,7 @@ public class PaymentPage extends BasePage {
 		} if(PaymentChoice.equalsIgnoreCase("GoPay")){
 			driver.findElement(paymentGoPay).click();
 			driver.findElement(chooseMethod).click();
-		} 
+		} return this;
 //		else {
 //			driver.findElement(paymentShopeePay).click();
 //			driver.findElement(chooseMethod).click();
@@ -84,14 +84,13 @@ public class PaymentPage extends BasePage {
 		}return totalPayment;
 	} 
 	
-
-	
 	@Step
-	public void assertTotalPrice(Products[] products, CartPage cartPage) {
+	public PaymentPage assertTotalPrice(Products[] products, CartPage cartPage) {
 		String methodPrice = driver.findElement(TotalPaymentInChooseMethod).getText();
 		methodPrice = methodPrice.replace(".","");
 		methodPrice = methodPrice + ".0";
 		AssertJUnit.assertEquals(methodPrice,("Rp"+totalPaymentForUser(products,cartPage)));
-	}
+		return this;
+	} 
 
 }

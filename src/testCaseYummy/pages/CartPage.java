@@ -54,11 +54,12 @@ public class CartPage extends BasePage{
 	}
 	
 	@Step
-	public void assertMultipleItem(Products[] products, CartPage cartPage) {
+	public CartPage assertMultipleItem(Products[] products, CartPage cartPage) {
 		for (int i = 0; i < products.length; i++) {
 			AssertJUnit.assertEquals(cartPage.getProductName(products[i].getXpathFoodName()),products[i].getFoodName());
-			
+		
 		}
+		return this;
 	}
 	
 
@@ -72,10 +73,10 @@ public class CartPage extends BasePage{
 	}
 	
 	@Step
-	public void assertMultipleItemAmount(Products[] products, CartPage cartPage) {
+	public CartPage assertMultipleItemAmount(Products[] products, CartPage cartPage) {
 		for (int i = 0; i < products.length; i++) {
 			AssertJUnit.assertEquals(cartPage.getProductAmount(i+1),(products[i].getFoodAmount()+ "x"));
-		}
+		} return this;
 	}
 	
 
@@ -89,7 +90,7 @@ public class CartPage extends BasePage{
 	}
 	
 	@Step
-	public void assertMultipleItemPrice(Products[] products, CartPage cartPage) {
+	public CartPage assertMultipleItemPrice(Products[] products, CartPage cartPage) {
 		for (int i = 0; i < products.length; i++) {
 		
 			totalPriceString = cartPage.getProductPrice(i+1);
@@ -109,7 +110,7 @@ public class CartPage extends BasePage{
 			
 			itemPrice = products[i].getFoodPrice();
 			AssertJUnit.assertEquals(pricePerItemInWeb,itemPrice);
-		}
+		} return this;
 	}
 	
 	

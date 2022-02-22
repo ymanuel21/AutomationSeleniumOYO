@@ -14,13 +14,23 @@ import io.qameta.allure.Step;
 public class HomePage extends BasePage{
 	
 	private final By viewCartLink = By.xpath("//div[contains(text(),'View Cart')]");
-	private final By title = By.xpath("//div[contains(text(),'OYO')]");
-	private final By plusItem = By.xpath("//div[@class='ant-drawer ant-drawer-right ant-drawer-open']//div[3]//div[1]//*[name()='svg']//*[name()='path' and contains(@clip-rule,'evenodd')]");
+	private final By title 		  = By.xpath("//div[contains(text(),'OYO')]");
+	private final By plusItem 	  = By.xpath("//div[@class='ant-drawer ant-drawer-right ant-drawer-open']//div[3]//div[1]//*[name()='svg']//*[name()='path' and contains(@clip-rule,'evenodd')]");
 	
+	private final By usernameFld  = By.xpath("//input[@placeholder='Eg: Budi']");
+	private final By userPhoneFld = By.xpath("//input[@placeholder='081234567890']");
+	private final By checkoutBtn  = By.xpath("//button[@type='submit']");
+	
+	private final By numberToCart = By.xpath("//div[@class='css-901oao r-aw03qq r-1smb3hh r-ubezar r-uiaua r-hbpseb r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-cnds34 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']");
+	private final By addToCartBtn = By.xpath("//div[contains(text(),'Add To Cart')]");
+	
+	private final By note 		  = By.xpath("//textarea[@placeholder='Write additional notes here']");
 	
 	private String firstPath = "//*[contains(text(),'";
-	private String lastPath = "')]";
+	private String lastPath  = "')]";
 	private String name;
+	
+	
 	
 	public HomePage(WebDriver driver) {
 		super(driver);
@@ -36,28 +46,26 @@ public class HomePage extends BasePage{
 	}
 	@Step
 	public void clickProduct(String product) {
+		
 		By productName = By.xpath("//h3[normalize-space()='"+ product +"']");
 		driver.findElement(productName).click();
 	}
 
 	@Step
 	public void sendNotes(String notes) {
-		By note = By.xpath("//textarea[@placeholder='Write additional notes here']");
 		driver.findElement(note).sendKeys(notes);
 	}
 	
 	@Step
 	public void clickAddToCartBtn(String product) {
-											
-		By numberToCart = By.xpath("//div[@class='css-901oao r-aw03qq r-1smb3hh r-ubezar r-uiaua r-hbpseb r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-cnds34 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']");
-		By addToCartBtn = By.xpath("//div[contains(text(),'Add To Cart')]");
+		
 		driver.findElement(numberToCart).getText();
 		driver.findElement(addToCartBtn).click();
 	}
 	
 	
 	@Step
-	public void addMultipleItem(Products[] products, HomePage homePage) {
+	public HomePage addMultipleItem(Products[] products, HomePage homePage) {
 		for (int i = 0; i < products.length; i++) {
 			homePage.clickProduct(products[i].getXpathFoodName());
 			if(products[i].getFoodAmount()>1) {
@@ -67,23 +75,21 @@ public class HomePage extends BasePage{
 			}
 			homePage.sendNotes(products[i].getNotes());
 			homePage.clickAddToCartBtn(products[i].getXpathFoodName());
-			}
+			} return this;
 		}
 	
 	@Step
-	public void clickViewCartLink() {
+	public HomePage clickViewCartLink() {
 		driver.findElement(viewCartLink).click();
-	}
+		return this;
+	} 
 	
 	@Step
-	public void inputUsernameAndPhone(String Name, String Phone) {
-		By usernameFld = By.xpath("//input[@placeholder='Eg: Budi']");
-		By userPhoneFld = By.xpath("//input[@placeholder='081234567890']");
-		By checkoutBtn = By.xpath("//button[@type='submit']");
-		
+	public HomePage inputUsernameAndPhone(String Name, String Phone) {	
 		driver.findElement(usernameFld).sendKeys(Name);
 		driver.findElement(userPhoneFld).sendKeys(Phone);
 		driver.findElement(checkoutBtn).click();
+		return this;
 	}
 	
 	public String getProductName(String loadedName) {

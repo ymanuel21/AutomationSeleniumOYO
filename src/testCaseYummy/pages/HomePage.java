@@ -48,7 +48,7 @@ public class HomePage extends BasePage{
 	
 	@Step
 	public void clickAddToCartBtn(String product) {
-		
+											
 		By numberToCart = By.xpath("//div[@class='css-901oao r-aw03qq r-1smb3hh r-ubezar r-uiaua r-hbpseb r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-cnds34 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']");
 		By addToCartBtn = By.xpath("//div[contains(text(),'Add To Cart')]");
 		driver.findElement(numberToCart).getText();

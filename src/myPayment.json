@@ -2,17 +2,5 @@
 	{ 
 	"payment": "OVO",
 	"deliveryChoice": "Delivery"
-	},
-	{
-	"payment": "GoPay",
-	"deliveryChoice": "Delivery"
-	},	
-	{ 
-	"payment": "OVO",
-	"deliveryChoice": "PickUp"
-	},
-	{
-	"payment": "GoPay",
-	"deliveryChoice": "PickUp"
 	}
 ]

@@ -3,30 +3,35 @@
 	"foodName": "Kebab Beef",
 	"xpathFoodName": "Kebab Beef",
 	"foodAmount": "1",
-	"notes": "Kebab Beef"
+	"notes": "Kebab Beef",
+	"foodPrice": "1"
 	},
 	{
 	"foodName": "Cheese Burger",
 	"xpathFoodName": "Cheese Burger",
 	"foodAmount": "2",
-	"notes": "Cheese Burger"
+	"notes": "Cheese Burger",
+	"foodPrice": "2"
 	},
 	{
 	"foodName": "Beef Spicy Burger",
 	"xpathFoodName": "Beef spicy burger",
 	"foodAmount": "3",
-	"notes": "Beef Spicy Burger"
+	"notes": "Beef Spicy Burger",
+	"foodPrice": "3"
 	},
 	{
 	"foodName": "Big Size Burger",
 	"xpathFoodName": "Big Size Burger",
 	"foodAmount": "1",
-	"notes": "Big Size Burger"
+	"notes": "Big Size Burger",
+	"foodPrice": "4"
 	},
 	{
 	"foodName": "Greentea Cake",
 	"xpathFoodName": "Greentea Cake",
 	"foodAmount": "1",
-	"notes": "Greentea Cake"
+	"notes": "Greentea Cake",
+	"foodPrice": "15000"
 	}
 ]

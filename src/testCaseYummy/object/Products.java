@@ -6,9 +6,17 @@ public class Products {
 	private String xpathFoodName;
 	private int foodAmount;
 	private String notes;
+	private int foodPrice;
 	
 	
 	
+
+	public int getFoodPrice() {
+		return foodPrice;
+	}
+	public void setFoodPrice(int foodPrice) {
+		this.foodPrice = foodPrice;
+	}
 	public String getNotes() {
 		return notes;
 	}

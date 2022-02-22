@@ -31,6 +31,8 @@ public class testCase extends BaseTest {
 	    CartPage cartPage = new CartPage(getDriver());
 	    cartPage.pageLoaded();
 	    cartPage.assertMultipleItem(products, cartPage);
+	    cartPage.assertMultipleItemAmount(products, cartPage);
+	    cartPage.assertMultipleItemPrice(products, cartPage);
 	    
 	    String deliveryChoice = paymentData.getDeliveryChoice();
 	    String email = homePage.loadEmail();
@@ -52,6 +54,6 @@ public class testCase extends BaseTest {
 	    orderDetailPage.pageLoaded();
 	    
 	    cartPage.assertMultipleItem(products, cartPage);
-	    
+
 	}
 }

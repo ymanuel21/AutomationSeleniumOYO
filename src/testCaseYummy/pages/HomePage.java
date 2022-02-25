@@ -21,6 +21,9 @@ public class HomePage extends BasePage{
 	private final By userPhoneFld = By.xpath("//input[@placeholder='081234567890']");
 	private final By checkoutBtn  = By.xpath("//button[@type='submit']");
 	
+	private final By usernameNotFilledNotif = By.xpath("//div[contains(text(),'Please enter your name')]");
+	private final String userPhoneNotif = "//div[contains(text(),'";
+	
 	private final By numberToCart = By.xpath("//div[@class='css-901oao r-aw03qq r-1smb3hh r-ubezar r-uiaua r-hbpseb r-p1pxzi r-11wrixw r-61z16t r-1mnahxq r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-cnds34 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']");
 	private final By addToCartBtn = By.xpath("//div[contains(text(),'Add To Cart')]");
 	
@@ -88,8 +91,20 @@ public class HomePage extends BasePage{
 	public HomePage inputUsernameAndPhone(String Name, String Phone) {	
 		driver.findElement(usernameFld).sendKeys(Name);
 		driver.findElement(userPhoneFld).sendKeys(Phone);
-		driver.findElement(checkoutBtn).click();
 		return this;
+	}
+	
+	@Step
+	public HomePage clickUsernameAndPhoneFld() {	
+		driver.findElement(userPhoneFld);
+		driver.findElement(usernameFld).sendKeys("");;
+		return this;
+	}
+	
+	
+	public HomePage clickProcessToCheckoutBtn(){
+		driver.findElement(checkoutBtn).click();
+		return this;	
 	}
 	
 	public String getProductName(String loadedName) {
@@ -106,6 +121,43 @@ public class HomePage extends BasePage{
 			AssertJUnit.assertEquals(cartPage.getProductName(products[i].getXpathFoodName()),products[i].getFoodName());
 			
 		}
+	}
+	
+	@Step
+	public HomePage assertIfNameNotFilled() {	
+		String notif = driver.findElement(usernameNotFilledNotif).getText();
+		AssertJUnit.assertEquals(notif,"Please enter your name");
+		return this;
+	}
+	
+	@Step
+	public HomePage assertIfPhoneNotFilledOrError(String phone) {	
+		
+		String notifText;
+		String notifPath;
+		By notifPathBy;
+		if(phone == null || phone == "") {
+			notifPath = userPhoneNotif + "Please enter your Whatsapp number" +lastPath;
+			notifPathBy = By.xpath(notifPath);
+			notifText = driver.findElement(notifPathBy).getText();
+			AssertJUnit.assertEquals(notifText,"Please enter your Whatsapp number");
+			
+		} else if(phone.length() < 10) {
+			notifPath = userPhoneNotif + "Whatsapp number cannot be less than 10 digit" +lastPath;
+			notifPathBy = By.xpath(notifPath);
+			notifText = driver.findElement(notifPathBy).getText();
+			AssertJUnit.assertEquals(notifText,"Whatsapp number cannot be less than 10 digit");
+			
+		}else if(phone.length()>=10 && phone.length()<=13 && phone.substring(1, 2)!="08") {
+			notifPath = userPhoneNotif + "Please enter Whatsapp number with a valid format" +lastPath;
+			notifPathBy = By.xpath(notifPath);
+			notifText = driver.findElement(notifPathBy).getText();
+			AssertJUnit.assertEquals(notifText,"Please enter Whatsapp number with a valid format");
+			
+		}else if(phone.length()>=10 && phone.length()<=13 && phone.substring(1, 2)=="08") {
+			
+		}
+	return this;
 	}
 	
 	}

@@ -1,0 +1,14 @@
+[
+	{
+	"errorEmail": "email@gmail"
+	},
+	{
+	"errorEmail": "@gmail"
+	},
+	{
+	"errorEmail": "@gmail.com"
+	},
+	{
+	"errorEmail": ""
+	}
+]

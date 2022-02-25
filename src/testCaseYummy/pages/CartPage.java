@@ -32,6 +32,7 @@ public class CartPage extends BasePage{
 	private String firstPath = "//div[normalize-space()='";
 	private String lastPath = "']";
 	private String name;
+	private By userEmailNotif= By.xpath("//div[@class='css-901oao r-1d8zi1x r-1ouijob r-1enofrn r-uiaua r-1cwl3u0 r-p1pxzi r-11wrixw r-61z16t r-knv0ih r-g18oep r-gy4na3 r-9aemit r-fdjqy7 r-s39u17 r-13wfysu r-1a2p6p6 r-ll0aj r-3twk1y']");
 	
 	private String totalPriceString;
 	private double totalPrice;
@@ -131,7 +132,31 @@ public class CartPage extends BasePage{
 		if(choice.equalsIgnoreCase("Delivery")) {
 			driver.findElement(roomDetailFld).sendKeys(roomDetail);
 		}
+		return this;
+	}
+	
+	@Step
+	public CartPage clickNextBtn() {
 		driver.findElement(nextBtn).click();
 		return this;
 	}
+	
+	@Step
+	public CartPage assertEmailErrorOrEmpty(String email) {
+		String notifText;
+		if(email == null || email == "") {
+			notifText = driver.findElement(userEmailNotif).getText();
+			AssertJUnit.assertEquals(notifText,"Please enter your email");
+			
+		}else if (email.startsWith("@")== true || (email.contains("@")==true && email.contains(".co")== false)) {
+			notifText = driver.findElement(userEmailNotif).getText();
+			AssertJUnit.assertEquals(notifText,"Please enter a valid email format");
+		}
+		else if (email.contains("@")==true && email.contains(".co")== true) {
+			
+		}
+		
+		return this;
+	}
+	
 }

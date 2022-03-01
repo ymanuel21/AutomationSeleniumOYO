@@ -7,7 +7,7 @@
 5. Menekan Add To Cart.
 6. User dapat memilihat produk yang ada di Cart
 7. user diperlukan untuk memasukan Nama dan Nomor HP untuk melaukan proses Checkout
-8. user dapat memilih tipe delivery (x) {belum}
+8. user dapat memilih tipe delivery (x)
 9. user memasukan email dan detail room.
 10. user dapat memilih metode pembayaran, untuk parallel 1 memilih GoPay dan parallel 2 memilih OVO
 11. user dapat melanjukan pembayaran dengan klik Continue to Pay, namun untuk OVO memasukan no HP sebelum klik to Continue To Pay
